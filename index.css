@@ -231,21 +231,22 @@ button {
     right: 72%;
 }
 
-#itemsList {
+#itemsList{
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 10%;
-    top: 5%;
+    right:10%;
+    top:5%;
 }
 
-#partyMembers {
+#partyMembers{
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 30%;
-    top: 5%;
+    right:30%;
+    top:5%;
 }
+
 
 #popUp {
     display: none;
@@ -268,35 +269,35 @@ button {
     font-size: 200%;
 }
 
-#randomEventInside {
+#randomEventInside{
     position: absolute;
     background-color: rgba(255, 0, 0, 0.4);
     text-align: center;
     right: 30%;
     padding: 10%;
-    font-size: 200%;
+    font-size: 200%;  
 }
 
-#store {
+#store{
     font-size: 40%;
 }
 
-.storeButtons {
+.storeButtons{
     width: 40px;
     height: 20px;
     font-size: 80%
 }
 
-#storeListInside {
+#storeListInside{
     background-color: whitesmoke;
     color: #000721
 }
 
-#storeExitButton {
-    background-color: white;
-    top: 5%;
+#storeExitButton{
+     background-color: white;
+    top:5%;
     left: 5%;
-    right: 5%;
+    right:5%;
     height: 25px;
     width: 25px;
     text-align: center;
@@ -306,16 +307,16 @@ button {
     align-items: center;
 }
 
-#eventExitButton {
-    background-color: white;
-    top: 5%;
+#eventExitButton{
+      background-color: white;
+    top:5%;
     left: 5%;
-    right: 5%;
+    right:5%;
     height: 25px;
     width: 25px;
     text-align: center;
     font-weight: normal;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;   
 }

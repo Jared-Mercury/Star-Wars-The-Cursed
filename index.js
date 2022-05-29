@@ -3,22 +3,21 @@ document.getElementById("useMedPacButton").addEventListener("click", useMedPack)
 
 function waterUse(heat, water) {
     console.log("water: " + items.water)
-    if(items.water>0){
-    if (items.map >= 1) {
-        items.water = Math.round((items.water - (partyMembers.length * heat / 4)) + water + 5)
-        document.getElementById("openMapButton").classList.remove("hiddenVisibility") //with a map you travel faster and safer so you lose less water than withouut it 
+    if (items.water > 0) {
+        if (items.map >= 1) {
+            items.water = Math.round((items.water - (partyMembers.length * heat / 4)) + water + 5)
+            document.getElementById("openMapButton").classList.remove("hiddenVisibility") //with a map you travel faster and safer so you lose less water than withouut it 
+        } else {
+            items.water = Math.round((items.water - (partyMembers.length * heat / 4)) + water)
+
+            console.log("party members: " + partyMembers.length)
+            console.log("heat: " + heat)
+            console.log("water in the giuven location: " + water)
+        }
     } else {
-        items.water = Math.round((items.water - (partyMembers.length * heat / 4)) + water)
-        
-        console.log("party members: " + partyMembers.length)
-        console.log("heat: " + heat)
-        console.log("water in the giuven location: " + water)
-    }
-    }
-    else{
-          for (let i = 0; i < partyMembers.length; i++) {
-                        partyMembers[i].health -= 1
-                    } 
+        for (let i = 0; i < partyMembers.length; i++) {
+            partyMembers[i].health -= 1
+        }
     }
     console.log("water left: " + items.water)
 }
@@ -233,21 +232,19 @@ let dragonCaveArr = {
     resources: 6,
 }
 
-function showButtons(){
-      if(items.firstAid>=1){
-            document.getElementById("useMedPacButton").classList.remove("hiddenVisibility")
+function showButtons() {
+    if (items.firstAid >= 1) {
+        document.getElementById("useMedPacButton").classList.remove("hiddenVisibility")
+    } else {
+        document.getElementById("useMedPacButton").classList.add("hiddenVisibility")
+
     }
-    else{
-            document.getElementById("useMedPacButton").classList.add("hiddenVisibility")
- 
-    }
-    
-        if(items.map>=1){
-            document.getElementById("openMapButton").classList.remove("hiddenVisibility")
-    }
-    else{
-            document.getElementById("openMapButton").classList.add("hiddenVisibility")
- 
+
+    if (items.map >= 1) {
+        document.getElementById("openMapButton").classList.remove("hiddenVisibility")
+    } else {
+        document.getElementById("openMapButton").classList.add("hiddenVisibility")
+
     }
 }
 
@@ -261,27 +258,27 @@ north.addEventListener("click", MosEisley)
 
 function MosEisley() {
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
- 
-  document.getElementById("missionsButton").classList.remove("hiddenVisibility")
- 
-   document.getElementById("buyWater").classList.remove("hiddenVisibility")
-  document.getElementById("buystick").classList.remove("hiddenVisibility")
+
+    document.getElementById("missionsButton").classList.remove("hiddenVisibility")
+
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buystick").classList.remove("hiddenVisibility")
     document.getElementById("buyParts").classList.remove("hiddenVisibility")
-     document.getElementById("buyMap").classList.remove("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
-     document.getElementById("buyArmor").classList.remove("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
-     
-  showButtons()
+    document.getElementById("buyMap").classList.remove("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
+    document.getElementById("buyArmor").classList.remove("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
 
-    // let goodOrBad = Math.random()
+    showButtons()
 
-    // if (goodOrBad <= 0.5) {
-    randomBadEvent(mosEisleyArr)
-        // } else {
-        //     randomGoodEvent(mosEisleyArr)
-        // }
+    let goodOrBad = Math.random()
+
+    if (goodOrBad <= 0.5) {
+        randomBadEvent(mosEisleyArr)
+    } else {
+        randomGoodEvent(mosEisleyArr)
+    }
 
     picture.src = mosEisleyArr.pic
     document.getElementById("placeName").innerHTML = mosEisleyArr.name
@@ -316,16 +313,16 @@ function MosEisley() {
 function SarlacPit() {
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
-    
-  showButtons()
 
-    // let goodOrBad = Math.random()
+    showButtons()
 
-    // if (goodOrBad <= 0.5) {
-    randomBadEvent(sarlacPitArr)
-        // } else {
-        //     randomGoodEvent(sarlacPitArr)
-        // }
+    let goodOrBad = Math.random()
+
+    if (goodOrBad <= 0.5) {
+        randomBadEvent(sarlacPitArr)
+    } else {
+        randomGoodEvent(sarlacPitArr)
+    }
 
     picture.src = sarlacPitArr.pic
 
@@ -356,17 +353,17 @@ function DuneSea() {
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
     picture.src = duneSeaArr.pic
-    
-      showButtons()
+
+    showButtons()
 
 
-    // let goodOrBad = Math.random()
+    let goodOrBad = Math.random()
 
-    // if (goodOrBad <= 0.5) {
-    randomBadEvent(duneSeaArr)
-        // } else {
-        //     randomGoodEvent(duneSeaArr)
-        // }
+    if (goodOrBad <= 0.5) {
+        randomBadEvent(duneSeaArr)
+    } else {
+        randomGoodEvent(duneSeaArr)
+    }
 
     document.getElementById("placeName").innerHTML = duneSeaArr.name
     waterUse(duneSeaArr.heat, duneSeaArr.water)
@@ -392,7 +389,7 @@ function DuneSea() {
         TuskenCamp(); // want to remove this after the first click
         east.removeEventListener("click", TuskenCamp);
     });
-       west.addEventListener("click", () => {
+    west.addEventListener("click", () => {
         JabbasPalace(); // want to remove this after the first click
         west.removeEventListener("click", JabbasPalace);
     });
@@ -401,25 +398,25 @@ function DuneSea() {
 function TuskenCamp() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      document.getElementById("buyWater").classList.remove("hiddenVisibility")
-  document.getElementById("buystick").classList.remove("hiddenVisibility")
+
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buystick").classList.remove("hiddenVisibility")
     document.getElementById("buyParts").classList.remove("hiddenVisibility")
-     document.getElementById("buyMap").classList.add("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.add("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.add("hiddenVisibility")
-     document.getElementById("buyArmor").classList.add("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.add("hiddenVisibility")
+    document.getElementById("buyMap").classList.add("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.add("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.add("hiddenVisibility")
+    document.getElementById("buyArmor").classList.add("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.add("hiddenVisibility")
 
-  showButtons()
+    showButtons()
 
-    // let goodOrBad = Math.random()
+    let goodOrBad = Math.random()
 
-    // if (goodOrBad <= 0.5) {
-    randomBadEvent(tuskenCampArr)
-        // } else {
-        //     randomGoodEvent(tuskenCampArr)
-        // }
+    if (goodOrBad <= 0.5) {
+        randomBadEvent(tuskenCampArr)
+    } else {
+        randomGoodEvent(tuskenCampArr)
+    }
 
     picture.src = tuskenCampArr.pic
     document.getElementById("placeName").innerHTML = tuskenCampArr.name
@@ -449,12 +446,12 @@ function JundlandWastes() {
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(jundlandWastesArr)
-        } else {
-            randomGoodEvent(jundlandWastesArr)
-        }
-        
-          showButtons()
+        randomBadEvent(jundlandWastesArr)
+    } else {
+        randomGoodEvent(jundlandWastesArr)
+    }
+
+    showButtons()
 
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
@@ -486,8 +483,8 @@ let i = 0
 function crossRoads() {
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
-    
-      showButtons()
+
+    showButtons()
 
 
     if (i == 0) { //add an alert or sth that you found a kid
@@ -530,17 +527,17 @@ function crossRoads() {
 function shipWreck() {
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
-    
-      showButtons()
+
+    showButtons()
 
 
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(shipWreckArr)
-        } else {
-            randomGoodEvent(shipWreckArr)
-        }
+        randomBadEvent(shipWreckArr)
+    } else {
+        randomGoodEvent(shipWreckArr)
+    }
     picture.src = shipWreckArr.pic
     document.getElementById("placeName").innerHTML = shipWreckArr.name
     waterUse(shipWreckArr.heat, shipWreckArr.water)
@@ -570,25 +567,25 @@ function shipWreck() {
 function MoistureFarm_1() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      showButtons()
-      
-  document.getElementById("buyWater").classList.remove("hiddenVisibility")
-     document.getElementById("buyMap").classList.add("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.add("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.add("hiddenVisibility")
-     document.getElementById("buyArmor").classList.add("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.add("hiddenVisibility")
-      document.getElementById("buystick").classList.add("hiddenVisibility")
-     document.getElementById("buyParts").classList.add("hiddenVisibility")
-     
+
+    showButtons()
+
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buyMap").classList.add("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.add("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.add("hiddenVisibility")
+    document.getElementById("buyArmor").classList.add("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.add("hiddenVisibility")
+    document.getElementById("buystick").classList.add("hiddenVisibility")
+    document.getElementById("buyParts").classList.add("hiddenVisibility")
+
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(moistureFarm1Arr)
-        } else {
-            randomGoodEvent(moistureFarm1Arr)
-        }
+        randomBadEvent(moistureFarm1Arr)
+    } else {
+        randomGoodEvent(moistureFarm1Arr)
+    }
 
     picture.src = moistureFarm1Arr.pic
     document.getElementById("placeName").innerHTML = moistureFarm1Arr.name
@@ -619,25 +616,25 @@ function MoistureFarm_1() {
 function MosEspa() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      showButtons()
-      
-document.getElementById("buyWater").classList.remove("hiddenVisibility")
-  document.getElementById("buystick").classList.remove("hiddenVisibility")
+
+    showButtons()
+
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buystick").classList.remove("hiddenVisibility")
     document.getElementById("buyParts").classList.remove("hiddenVisibility")
-     document.getElementById("buyMap").classList.remove("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
-     document.getElementById("buyArmor").classList.remove("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
+    document.getElementById("buyMap").classList.remove("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
+    document.getElementById("buyArmor").classList.remove("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
 
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(mosEspaArr)
-        } else {
-            randomGoodEvent(mosEspaArr)
-        }
+        randomBadEvent(mosEspaArr)
+    } else {
+        randomGoodEvent(mosEspaArr)
+    }
 
     picture.src = mosEspaArr.pic
     document.getElementById("placeName").innerHTML = mosEspaArr.name
@@ -668,24 +665,24 @@ document.getElementById("buyWater").classList.remove("hiddenVisibility")
 function MoistureFarm_2() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      showButtons()
-  document.getElementById("buyWater").classList.remove("hiddenVisibility")
-  document.getElementById("buyMap").classList.add("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.add("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.add("hiddenVisibility")
-     document.getElementById("buyArmor").classList.add("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.add("hiddenVisibility")
-      document.getElementById("buystick").classList.add("hiddenVisibility")
-     document.getElementById("buyParts").classList.add("hiddenVisibility")
-     
+
+    showButtons()
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buyMap").classList.add("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.add("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.add("hiddenVisibility")
+    document.getElementById("buyArmor").classList.add("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.add("hiddenVisibility")
+    document.getElementById("buystick").classList.add("hiddenVisibility")
+    document.getElementById("buyParts").classList.add("hiddenVisibility")
+
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(moistureFarm2Arr)
-        } else {
-            randomGoodEvent(moistureFarm2Arr)
-        }
+        randomBadEvent(moistureFarm2Arr)
+    } else {
+        randomGoodEvent(moistureFarm2Arr)
+    }
 
     picture.src = moistureFarm2Arr.pic
     document.getElementById("placeName").innerHTML = moistureFarm2Arr.name
@@ -711,17 +708,17 @@ function MoistureFarm_2() {
 function DragonCave() {
 
     document.getElementById("openStoreButton").classList.add("hiddenVisibility")
-    
-      showButtons()
+
+    showButtons()
 
 
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(dragonCaveArr)
-        } else {
-            randomGoodEvent(dragonCaveArr)
-        }
+        randomBadEvent(dragonCaveArr)
+    } else {
+        randomGoodEvent(dragonCaveArr)
+    }
 
     picture.src = dragonCaveArr.pic
     document.getElementById("placeName").innerHTML = dragonCaveArr.name
@@ -755,25 +752,25 @@ function DragonCave() {
 function TocheStation() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      showButtons()
-      
-document.getElementById("buyWater").classList.remove("hiddenVisibility")
-  document.getElementById("buystick").classList.remove("hiddenVisibility")
+
+    showButtons()
+
+    document.getElementById("buyWater").classList.remove("hiddenVisibility")
+    document.getElementById("buystick").classList.remove("hiddenVisibility")
     document.getElementById("buyParts").classList.remove("hiddenVisibility")
-     document.getElementById("buyMap").classList.remove("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
-     document.getElementById("buyArmor").classList.remove("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
+    document.getElementById("buyMap").classList.remove("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.remove("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
+    document.getElementById("buyArmor").classList.remove("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
 
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(tocheStationArr)
-        } else {
-            randomGoodEvent(tocheStationArr)
-        }
+        randomBadEvent(tocheStationArr)
+    } else {
+        randomGoodEvent(tocheStationArr)
+    }
 
     picture.src = tocheStationArr.pic
     document.getElementById("placeName").innerHTML = tocheStationArr.name
@@ -805,26 +802,26 @@ document.getElementById("buyWater").classList.remove("hiddenVisibility")
 function JabbasPalace() {
 
     document.getElementById("openStoreButton").classList.remove("hiddenVisibility")
-    
-      showButtons()
 
-document.getElementById("buyWater").classList.add("hiddenVisibility")
-  document.getElementById("buystick").classList.add("hiddenVisibility")
+    showButtons()
+
+    document.getElementById("buyWater").classList.add("hiddenVisibility")
+    document.getElementById("buystick").classList.add("hiddenVisibility")
     document.getElementById("buyParts").classList.add("hiddenVisibility")
-     document.getElementById("buyMap").classList.add("hiddenVisibility")
-     document.getElementById("buyMedPac").classList.add("hiddenVisibility")
-     document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
-     document.getElementById("buyArmor").classList.remove("hiddenVisibility")
-     document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
+    document.getElementById("buyMap").classList.add("hiddenVisibility")
+    document.getElementById("buyMedPac").classList.add("hiddenVisibility")
+    document.getElementById("buylightSaber").classList.remove("hiddenVisibility")
+    document.getElementById("buyArmor").classList.remove("hiddenVisibility")
+    document.getElementById("buyBlaster").classList.remove("hiddenVisibility")
 
-     
+
     let goodOrBad = Math.random()
 
     if (goodOrBad <= 0.5) {
-    randomBadEvent(jabbaPalaceArr)
-        } else {
-            randomGoodEvent(jabbaPalaceArr)
-        }
+        randomBadEvent(jabbaPalaceArr)
+    } else {
+        randomGoodEvent(jabbaPalaceArr)
+    }
 
     picture.src = jabbaPalaceArr.pic
     document.getElementById("placeName").innerHTML = jabbaPalaceArr.name
@@ -909,7 +906,7 @@ function openStoreList() {
 
     let storeDiv = document.getElementById("store")
 
- 
+
     document.getElementById("main").classList.add("hiddenVisibility")
 
     document.getElementById("store").classList.remove("hiddenVisibility")
@@ -986,9 +983,9 @@ function randomBadEvent(place) {
     //             randomEventInside.innerHTML = `
     // <button id="eventExitButton">X</button>
     // <div id="eventText">
-           
+
     //        Woops! Is that a giant rock that appeared on your way? How did it... oh, right... IT'S A TRAP! Trap set up by the Tuskens, if you want to go on with your journey, you will have to use the force to move the obstacles out of your way. One of your characters loses a force point.
-           
+
     //             </div>
     // `
 
@@ -1013,9 +1010,9 @@ function randomBadEvent(place) {
     // <button id="eventExitButton">X</button>
     // <div id="eventText">
     //        <h2>
-           
+
     //        Can you hear that? Are these... YES! These are the Sand People's sounds! Your party got caught in an ambush while passing through a canyon. The Sand People got you surrounded and start to shoot at you from their rifles!
-           
+
     //             </div>
     // `
 
@@ -1070,135 +1067,134 @@ function randomBadEvent(place) {
 
 
 
-function useMedPack(){
+function useMedPack() {
     console.log("use medpack has been called")
 
-        items.firstAid-=1
-         for (let i = 0; i < partyMembers.length; i++) {
-                        partyMembers[i].health += 10
-                    }
-                    reloadInfo()
-   
+    items.firstAid -= 1
+    for (let i = 0; i < partyMembers.length; i++) {
+        partyMembers[i].health += 10
+    }
+    reloadInfo()
+
 }
 
 function randomGoodEvent(place) {
     console.log("Ok so, I've been called - the randomgood event function")
 
-//     let random = Math.random()
+    //     let random = Math.random()
 
-//     if (place.resources / 10 <= random) {
-//         let event = Math.random() // get a random number from 0 to 1
+    //     if (place.resources / 10 <= random) {
+    //         let event = Math.random() // get a random number from 0 to 1
 
-//         let oneOfTwoEvents = Math.random()
+    //         let oneOfTwoEvents = Math.random()
 
-//         let randomEvent = document.getElementById("anEventHappened")
+    //         let randomEvent = document.getElementById("anEventHappened")
 
-//         let randomEventInside = document.createElement('div')
-//         randomEventInside.setAttribute("id", "randomEventInside")
+    //         let randomEventInside = document.createElement('div')
+    //         randomEventInside.setAttribute("id", "randomEventInside")
 
-//         if (event <= 0.4) {
-//             if (0.5 <= fiftyPercent) {
-
-
-//                 randomEventInside.innerHTML = `
-//     <button id="eventExitButton">X</button>
-//     <div id="eventText">
-
-//            Hey! What is that burried in the sand...? I think it's... yeah, it's 20 credits! That is definitely your lucky day!
-
-//                 </div>
-//     `
-
-//                 items.credits += 20
-
-//                 document.getElementById("main").classList.add("hiddenVisibility")
-
-//                 randomEvent.appendChild(randomEventInside)
-
-//                 document.getElementById("eventExitButton").addEventListener("click", function() {
-//                     document.getElementById("main").classList.remove("hiddenVisibility")
-//                     document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//                 })
-//             }
-//         } else if (event <= 0.8) {
-//             if (0.5 <= fiftyPercent) {
-
-//                 if (0.5 <= oneOfTwoEvents) {
-//                     randomEventInside.innerHTML = `
-//     <button id="eventExitButton">X</button>
-//     <div id="eventText">
+    //         if (event <= 0.4) {
+    //             if (0.5 <= fiftyPercent) {
 
 
-//            Look at this! I think someone dropped a useful part, why don't you take it and see if it comes in handy?
+    //                 randomEventInside.innerHTML = `
+    //     <button id="eventExitButton">X</button>
+    //     <div id="eventText">
 
-//                 </div>
-//     `
-//                     items.blaster += 1
+    //            Hey! What is that burried in the sand...? I think it's... yeah, it's 20 credits! That is definitely your lucky day!
 
-//                     document.getElementById("main").classList.add("hiddenVisibility")
+    //                 </div>
+    //     `
 
-//                     randomEvent.appendChild(randomEventInside)
+    //                 items.credits += 20
 
-//                     document.getElementById("eventExitButton").addEventListener("click", function() {
-//                         document.getElementById("main").classList.remove("hiddenVisibility")
-//                         document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//                     })
+    //                 document.getElementById("main").classList.add("hiddenVisibility")
 
-//                 }
+    //                 randomEvent.appendChild(randomEventInside)
 
+    //                 document.getElementById("eventExitButton").addEventListener("click", function() {
+    //                     document.getElementById("main").classList.remove("hiddenVisibility")
+    //                     document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //                 })
+    //             }
+    //         } else if (event <= 0.8) {
+    //             if (0.5 <= fiftyPercent) {
 
-//             } else {
-//                 randomEventInside.innerHTML = `
-//     <button id="eventExitButton">X</button>
-//     <div id="eventText">
-//            It looks like someone left this campsite really quickly! Let's check if they left something useful. Hey! It's a 50 sacks worth gallon of water, lucky you!
-//                 </div>
-//     `
-//                 items.water += 50
-
-//             }
-
-//             document.getElementById("eventExitButton").addEventListener("click", function() {
-//                 document.getElementById("main").classList.remove("hiddenVisibility")
-//                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//             })
-//         }
-//     } else {
-//         if (0.5 <= fiftyPercent) {
-//             if (items.parts >= 1) {
-//                 randomEventInside.innerHTML = `
-//     <button id="eventExitButton">X</button>
-//     <div id="eventText">
-//            This looks like a blaster? Yeah, seems like someone dropped it, would you like to use one of your parts to fix it?
-//                 </div>
-//                 <button id="eventYesButton">YES</button>
-//                 <button id="eventNoButton">NO</button>
-//     `
+    //                 if (0.5 <= oneOfTwoEvents) {
+    //                     randomEventInside.innerHTML = `
+    //     <button id="eventExitButton">X</button>
+    //     <div id="eventText">
 
 
-//             }
+    //            Look at this! I think someone dropped a useful part, why don't you take it and see if it comes in handy?
 
-//             document.getElementById("eventExitButton").addEventListener("click", function() {
-//                 document.getElementById("main").classList.remove("hiddenVisibility")
-//                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//             })
+    //                 </div>
+    //     `
+    //                     items.blaster += 1
 
-//             document.getElementById("eventNoButton").addEventListener("click", function() {
-//                 document.getElementById("main").classList.remove("hiddenVisibility")
-//                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//             })
+    //                     document.getElementById("main").classList.add("hiddenVisibility")
 
-//             document.getElementById("eventYesButton").addEventListener("click", function() {
-//                 items.parts -= 1
-//                 items.blaster += 1
-//                 document.getElementById("main").classList.remove("hiddenVisibility")
-//                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
-//             })
+    //                     randomEvent.appendChild(randomEventInside)
 
-//         }
+    //                     document.getElementById("eventExitButton").addEventListener("click", function() {
+    //                         document.getElementById("main").classList.remove("hiddenVisibility")
+    //                         document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //                     })
 
-//     }
-//     document.getElementById("randomEventInside").style.backgroundColor = "rgba(0,128,0.4)"
+    //                 }
+
+
+    //             } else {
+    //                 randomEventInside.innerHTML = `
+    //     <button id="eventExitButton">X</button>
+    //     <div id="eventText">
+    //            It looks like someone left this campsite really quickly! Let's check if they left something useful. Hey! It's a 50 sacks worth gallon of water, lucky you!
+    //                 </div>
+    //     `
+    //                 items.water += 50
+
+    //             }
+
+    //             document.getElementById("eventExitButton").addEventListener("click", function() {
+    //                 document.getElementById("main").classList.remove("hiddenVisibility")
+    //                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //             })
+    //         }
+    //     } else {
+    //         if (0.5 <= fiftyPercent) {
+    //             if (items.parts >= 1) {
+    //                 randomEventInside.innerHTML = `
+    //     <button id="eventExitButton">X</button>
+    //     <div id="eventText">
+    //            This looks like a blaster? Yeah, seems like someone dropped it, would you like to use one of your parts to fix it?
+    //                 </div>
+    //                 <button id="eventYesButton">YES</button>
+    //                 <button id="eventNoButton">NO</button>
+    //     `
+
+
+    //             }
+
+    //             document.getElementById("eventExitButton").addEventListener("click", function() {
+    //                 document.getElementById("main").classList.remove("hiddenVisibility")
+    //                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //             })
+
+    //             document.getElementById("eventNoButton").addEventListener("click", function() {
+    //                 document.getElementById("main").classList.remove("hiddenVisibility")
+    //                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //             })
+
+    //             document.getElementById("eventYesButton").addEventListener("click", function() {
+    //                 items.parts -= 1
+    //                 items.blaster += 1
+    //                 document.getElementById("main").classList.remove("hiddenVisibility")
+    //                 document.getElementById("anEventHappened").classList.add("hiddenVisibility")
+    //             })
+
+    //         }
+
+    //     }
+    //     document.getElementById("randomEventInside").style.backgroundColor = "rgba(0,128,0.4)"
 
 }
-
